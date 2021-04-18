@@ -1,0 +1,6 @@
+vpc_cidr_block = "10.0.0.0/16"
+prv_subnet_cidr_block = "10.0.2.0/24"
+pub_subnet_cidr_block = "10.0.1.0/24"
+instance_type = "t2.micro"
+remote_state_bucket = "rijutfstate234"
+remote_state_bucket_key_path = "global/terraform.tfstate"

@@ -1,0 +1,132 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] data.aws_subnet.pub_subnet (expand)" [label = "data.aws_subnet.pub_subnet", shape = "box"]
+		"[root] data.aws_vpc.alpha_vpc_id (expand)" [label = "data.aws_vpc.alpha_vpc_id", shape = "box"]
+		"[root] module.bastion_host.aws_security_group.bastion_sg (expand)" [label = "module.bastion_host.aws_security_group.bastion_sg", shape = "box"]
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pub_launch_configuration (expand)" [label = "module.ec2_instances.aws_launch_configuration.ec2_pub_launch_configuration", shape = "box"]
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pvt_launch_configuration (expand)" [label = "module.ec2_instances.aws_launch_configuration.ec2_pvt_launch_configuration", shape = "box"]
+		"[root] module.ec2_instances.aws_security_group.elb_sg (expand)" [label = "module.ec2_instances.aws_security_group.elb_sg", shape = "box"]
+		"[root] module.ec2_instances.aws_security_group.private_sg (expand)" [label = "module.ec2_instances.aws_security_group.private_sg", shape = "box"]
+		"[root] module.ec2_instances.aws_security_group.public_sg (expand)" [label = "module.ec2_instances.aws_security_group.public_sg", shape = "box"]
+		"[root] module.ec2_instances.data.aws_ami.launch_configuration_ami (expand)" [label = "module.ec2_instances.data.aws_ami.launch_configuration_ami", shape = "box"]
+		"[root] module.ec2_instances.data.terraform_remote_state.network_configuration (expand)" [label = "module.ec2_instances.data.terraform_remote_state.network_configuration", shape = "box"]
+		"[root] module.vpc_networking.aws_internet_gateway.internet_gw (expand)" [label = "module.vpc_networking.aws_internet_gateway.internet_gw", shape = "box"]
+		"[root] module.vpc_networking.aws_route.igw_route (expand)" [label = "module.vpc_networking.aws_route.igw_route", shape = "box"]
+		"[root] module.vpc_networking.aws_route_table.alpha_private_rt (expand)" [label = "module.vpc_networking.aws_route_table.alpha_private_rt", shape = "box"]
+		"[root] module.vpc_networking.aws_route_table.alpha_public_rt (expand)" [label = "module.vpc_networking.aws_route_table.alpha_public_rt", shape = "box"]
+		"[root] module.vpc_networking.aws_route_table_association.private_route_table_association (expand)" [label = "module.vpc_networking.aws_route_table_association.private_route_table_association", shape = "box"]
+		"[root] module.vpc_networking.aws_route_table_association.public_route_table_association (expand)" [label = "module.vpc_networking.aws_route_table_association.public_route_table_association", shape = "box"]
+		"[root] module.vpc_networking.aws_subnet.alpha_prv_subnet (expand)" [label = "module.vpc_networking.aws_subnet.alpha_prv_subnet", shape = "box"]
+		"[root] module.vpc_networking.aws_subnet.alpha_pub_subnet (expand)" [label = "module.vpc_networking.aws_subnet.alpha_pub_subnet", shape = "box"]
+		"[root] module.vpc_networking.aws_vpc.alpha_vpc (expand)" [label = "module.vpc_networking.aws_vpc.alpha_vpc", shape = "box"]
+		"[root] output.bastion_id (destroy)" [label = "output.bastion_id (destroy)", shape = "note"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] provider[\"terraform.io/builtin/terraform\"]" [label = "provider[\"terraform.io/builtin/terraform\"]", shape = "diamond"]
+		"[root] var.instance_type" [label = "var.instance_type", shape = "note"]
+		"[root] var.prv_subnet_cidr_block" [label = "var.prv_subnet_cidr_block", shape = "note"]
+		"[root] var.pub_subnet_cidr_block" [label = "var.pub_subnet_cidr_block", shape = "note"]
+		"[root] var.region" [label = "var.region", shape = "note"]
+		"[root] var.remote_state_bucket" [label = "var.remote_state_bucket", shape = "note"]
+		"[root] var.remote_state_bucket_key_path" [label = "var.remote_state_bucket_key_path", shape = "note"]
+		"[root] var.vpc_cidr_block" [label = "var.vpc_cidr_block", shape = "note"]
+		"[root] data.aws_subnet.pub_subnet (expand)" -> "[root] module.vpc_networking.output.pub_subnet_id (expand)"
+		"[root] data.aws_vpc.alpha_vpc_id (expand)" -> "[root] module.vpc_networking.output.vpc_id (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] module.bastion_host (close)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] module.ec2_instances (close)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] module.vpc_networking (close)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.bastion_id (destroy)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.main_vpc_id (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.prv_subnet_id (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.pub_subnet_id (expand)"
+		"[root] module.bastion_host (close)" -> "[root] module.bastion_host.aws_security_group.bastion_sg (expand)"
+		"[root] module.bastion_host (close)" -> "[root] module.bastion_host.var.pub_subnet_id (expand)"
+		"[root] module.bastion_host.aws_security_group.bastion_sg (expand)" -> "[root] module.bastion_host.var.bastion_vpc_id (expand)"
+		"[root] module.bastion_host.var.bastion_vpc_id (expand)" -> "[root] data.aws_vpc.alpha_vpc_id (expand)"
+		"[root] module.bastion_host.var.bastion_vpc_id (expand)" -> "[root] module.bastion_host (expand)"
+		"[root] module.bastion_host.var.pub_subnet_id (expand)" -> "[root] data.aws_subnet.pub_subnet (expand)"
+		"[root] module.bastion_host.var.pub_subnet_id (expand)" -> "[root] module.bastion_host (expand)"
+		"[root] module.ec2_instances (close)" -> "[root] module.ec2_instances.aws_launch_configuration.ec2_pub_launch_configuration (expand)"
+		"[root] module.ec2_instances (close)" -> "[root] module.ec2_instances.aws_launch_configuration.ec2_pvt_launch_configuration (expand)"
+		"[root] module.ec2_instances (close)" -> "[root] module.ec2_instances.aws_security_group.elb_sg (expand)"
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pub_launch_configuration (expand)" -> "[root] module.ec2_instances.aws_security_group.private_sg (expand)"
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pub_launch_configuration (expand)" -> "[root] module.ec2_instances.data.aws_ami.launch_configuration_ami (expand)"
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pub_launch_configuration (expand)" -> "[root] module.ec2_instances.var.EC2_instance_type (expand)"
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pub_launch_configuration (expand)" -> "[root] module.ec2_instances.var.key_pair (expand)"
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pvt_launch_configuration (expand)" -> "[root] module.ec2_instances.aws_security_group.private_sg (expand)"
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pvt_launch_configuration (expand)" -> "[root] module.ec2_instances.data.aws_ami.launch_configuration_ami (expand)"
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pvt_launch_configuration (expand)" -> "[root] module.ec2_instances.var.EC2_instance_type (expand)"
+		"[root] module.ec2_instances.aws_launch_configuration.ec2_pvt_launch_configuration (expand)" -> "[root] module.ec2_instances.var.key_pair (expand)"
+		"[root] module.ec2_instances.aws_security_group.elb_sg (expand)" -> "[root] module.ec2_instances.data.terraform_remote_state.network_configuration (expand)"
+		"[root] module.ec2_instances.aws_security_group.elb_sg (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] module.ec2_instances.aws_security_group.private_sg (expand)" -> "[root] module.ec2_instances.aws_security_group.public_sg (expand)"
+		"[root] module.ec2_instances.aws_security_group.public_sg (expand)" -> "[root] module.ec2_instances.data.terraform_remote_state.network_configuration (expand)"
+		"[root] module.ec2_instances.aws_security_group.public_sg (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] module.ec2_instances.data.aws_ami.launch_configuration_ami (expand)" -> "[root] module.ec2_instances (expand)"
+		"[root] module.ec2_instances.data.aws_ami.launch_configuration_ami (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] module.ec2_instances.data.terraform_remote_state.network_configuration (expand)" -> "[root] module.ec2_instances.var.region (expand)"
+		"[root] module.ec2_instances.data.terraform_remote_state.network_configuration (expand)" -> "[root] module.ec2_instances.var.remote_state_bucket (expand)"
+		"[root] module.ec2_instances.data.terraform_remote_state.network_configuration (expand)" -> "[root] module.ec2_instances.var.remote_state_key_path (expand)"
+		"[root] module.ec2_instances.data.terraform_remote_state.network_configuration (expand)" -> "[root] provider[\"terraform.io/builtin/terraform\"]"
+		"[root] module.ec2_instances.var.EC2_instance_type (expand)" -> "[root] module.ec2_instances (expand)"
+		"[root] module.ec2_instances.var.EC2_instance_type (expand)" -> "[root] var.instance_type"
+		"[root] module.ec2_instances.var.key_pair (expand)" -> "[root] module.ec2_instances (expand)"
+		"[root] module.ec2_instances.var.region (expand)" -> "[root] module.ec2_instances (expand)"
+		"[root] module.ec2_instances.var.region (expand)" -> "[root] var.region"
+		"[root] module.ec2_instances.var.remote_state_bucket (expand)" -> "[root] module.ec2_instances (expand)"
+		"[root] module.ec2_instances.var.remote_state_bucket (expand)" -> "[root] var.remote_state_bucket"
+		"[root] module.ec2_instances.var.remote_state_key_path (expand)" -> "[root] module.ec2_instances (expand)"
+		"[root] module.ec2_instances.var.remote_state_key_path (expand)" -> "[root] var.remote_state_bucket_key_path"
+		"[root] module.vpc_networking (close)" -> "[root] module.vpc_networking.aws_route.igw_route (expand)"
+		"[root] module.vpc_networking (close)" -> "[root] module.vpc_networking.aws_route_table_association.private_route_table_association (expand)"
+		"[root] module.vpc_networking (close)" -> "[root] module.vpc_networking.aws_route_table_association.public_route_table_association (expand)"
+		"[root] module.vpc_networking (close)" -> "[root] module.vpc_networking.output.prv_subnet_id (expand)"
+		"[root] module.vpc_networking (close)" -> "[root] module.vpc_networking.output.pub_subnet_id (expand)"
+		"[root] module.vpc_networking (close)" -> "[root] module.vpc_networking.output.vpc_id (expand)"
+		"[root] module.vpc_networking.aws_internet_gateway.internet_gw (expand)" -> "[root] module.vpc_networking.aws_vpc.alpha_vpc (expand)"
+		"[root] module.vpc_networking.aws_route.igw_route (expand)" -> "[root] module.vpc_networking.aws_internet_gateway.internet_gw (expand)"
+		"[root] module.vpc_networking.aws_route.igw_route (expand)" -> "[root] module.vpc_networking.aws_route_table.alpha_public_rt (expand)"
+		"[root] module.vpc_networking.aws_route_table.alpha_private_rt (expand)" -> "[root] module.vpc_networking.aws_vpc.alpha_vpc (expand)"
+		"[root] module.vpc_networking.aws_route_table.alpha_public_rt (expand)" -> "[root] module.vpc_networking.aws_vpc.alpha_vpc (expand)"
+		"[root] module.vpc_networking.aws_route_table_association.private_route_table_association (expand)" -> "[root] module.vpc_networking.aws_route_table.alpha_private_rt (expand)"
+		"[root] module.vpc_networking.aws_route_table_association.private_route_table_association (expand)" -> "[root] module.vpc_networking.aws_subnet.alpha_prv_subnet (expand)"
+		"[root] module.vpc_networking.aws_route_table_association.public_route_table_association (expand)" -> "[root] module.vpc_networking.aws_route_table.alpha_public_rt (expand)"
+		"[root] module.vpc_networking.aws_route_table_association.public_route_table_association (expand)" -> "[root] module.vpc_networking.aws_subnet.alpha_pub_subnet (expand)"
+		"[root] module.vpc_networking.aws_subnet.alpha_prv_subnet (expand)" -> "[root] module.vpc_networking.aws_vpc.alpha_vpc (expand)"
+		"[root] module.vpc_networking.aws_subnet.alpha_prv_subnet (expand)" -> "[root] module.vpc_networking.var.prv_subnet_cidr_block (expand)"
+		"[root] module.vpc_networking.aws_subnet.alpha_prv_subnet (expand)" -> "[root] module.vpc_networking.var.region (expand)"
+		"[root] module.vpc_networking.aws_subnet.alpha_pub_subnet (expand)" -> "[root] module.vpc_networking.aws_vpc.alpha_vpc (expand)"
+		"[root] module.vpc_networking.aws_subnet.alpha_pub_subnet (expand)" -> "[root] module.vpc_networking.var.pub_subnet_cidr_block (expand)"
+		"[root] module.vpc_networking.aws_subnet.alpha_pub_subnet (expand)" -> "[root] module.vpc_networking.var.region (expand)"
+		"[root] module.vpc_networking.aws_vpc.alpha_vpc (expand)" -> "[root] module.vpc_networking.var.vpc_cidr_block (expand)"
+		"[root] module.vpc_networking.aws_vpc.alpha_vpc (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] module.vpc_networking.output.prv_subnet_id (expand)" -> "[root] module.vpc_networking.aws_subnet.alpha_prv_subnet (expand)"
+		"[root] module.vpc_networking.output.pub_subnet_id (expand)" -> "[root] module.vpc_networking.aws_subnet.alpha_pub_subnet (expand)"
+		"[root] module.vpc_networking.output.vpc_id (expand)" -> "[root] module.vpc_networking.aws_vpc.alpha_vpc (expand)"
+		"[root] module.vpc_networking.var.prv_subnet_cidr_block (expand)" -> "[root] module.vpc_networking (expand)"
+		"[root] module.vpc_networking.var.prv_subnet_cidr_block (expand)" -> "[root] var.prv_subnet_cidr_block"
+		"[root] module.vpc_networking.var.pub_subnet_cidr_block (expand)" -> "[root] module.vpc_networking (expand)"
+		"[root] module.vpc_networking.var.pub_subnet_cidr_block (expand)" -> "[root] var.pub_subnet_cidr_block"
+		"[root] module.vpc_networking.var.region (expand)" -> "[root] module.vpc_networking (expand)"
+		"[root] module.vpc_networking.var.vpc_cidr_block (expand)" -> "[root] module.vpc_networking (expand)"
+		"[root] module.vpc_networking.var.vpc_cidr_block (expand)" -> "[root] var.vpc_cidr_block"
+		"[root] output.main_vpc_id (expand)" -> "[root] module.vpc_networking.output.vpc_id (expand)"
+		"[root] output.prv_subnet_id (expand)" -> "[root] module.vpc_networking.output.prv_subnet_id (expand)"
+		"[root] output.pub_subnet_id (expand)" -> "[root] module.vpc_networking.output.pub_subnet_id (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] data.aws_subnet.pub_subnet (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] module.bastion_host.aws_security_group.bastion_sg (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] module.ec2_instances.aws_launch_configuration.ec2_pub_launch_configuration (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] module.ec2_instances.aws_launch_configuration.ec2_pvt_launch_configuration (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] module.ec2_instances.aws_security_group.elb_sg (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] module.vpc_networking.aws_route.igw_route (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] module.vpc_networking.aws_route_table_association.private_route_table_association (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] module.vpc_networking.aws_route_table_association.public_route_table_association (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.region"
+		"[root] provider[\"terraform.io/builtin/terraform\"] (close)" -> "[root] module.ec2_instances.data.terraform_remote_state.network_configuration (expand)"
+		"[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+		"[root] root" -> "[root] provider[\"terraform.io/builtin/terraform\"] (close)"
+	}
+}
+
